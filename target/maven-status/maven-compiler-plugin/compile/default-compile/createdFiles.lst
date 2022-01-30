@@ -1,0 +1,6 @@
+dao\FoodDaoImpl.class
+models\Fridges.class
+models\HealthInspector.class
+models\Restaurant.class
+models\Food.class
+dao\FoodDao.class

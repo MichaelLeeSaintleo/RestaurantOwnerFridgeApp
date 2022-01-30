@@ -1,0 +1,132 @@
+/*
+ * Lets create a schema for users, roles, fridge, food (possibly (restaurant, inspector)
+ * */
+
+
+/*
+ * DDL - Data Definition Langauage... Lets create some tables
+ * */
+CREATE TABLE restaurant(
+restaurant_id SERIAL PRIMARY KEY,
+restaurant_name (varchar)(50) NOT NULL,
+restaurant_username varchar(50) NOT NULL,
+restaurant_password varchar(50) NOT NULL
+);
+--serial, put default
+INSERT INTO restaurant VALUES (DEFAULT, 'McDonalds', 'RonaldMcDonald', 'Imlovinit');
+INSERT INTO restaurant VALUES (DEFAULT, 'Two Meatballs', 'GourmetChef', 'password');
+
+CREATE TABLE health_inspector( 
+inspector_id SERIAL PRIMARY KEY,
+inspector_name (varchar)(50) NOT NULL, 
+inspector_username (varchar)(50) NOT NULL,
+inspector_password (varchar)(50) NOT NULL
+);
+
+---Adding information---------
+
+INSERT INTO health_inspector VALUES (DEFAULT, 'John', 'JohnInspector', 'password');
+INSERT INTO health_inspector VALUES (DEFAULT, 'Kevin', 'KevinRules', 'password');
+INSERT INTO health_inspector VALUES (DEFAULT, 'Mary', 'MaryDuty', 'password' );
+
+--adding information
+INSERT INTO health_inspector VALUES (DEFAULT, ) inspector_password (varchar)(50) NOT NULL );
+
+CREATE TABLE fridges( 
+fridge_id SERIAL PRIMARY KEY,
+restaurant_id_fk int REFERENCES restaurant(restaurant_id),
+);
+
+--add a fridge to restaurant 1 (McDonalds) and restaurant 2 (Two Meatballs)
+INSERT INTO fridges VALUES (DEFAULT, 1);
+INSERT INTO fridges VALUES (DEFAULT, 2);
+DELETE FROM fridges WHERE fridge_id = 1;
+
+--add food into food table 
+INSERT INTO food VALUES (DEFAULT, 'banana', 2); --This IS inserting the food(banana) TO fridge 2. 
+INSERT INTO food VALUES (DEFAULT, 'pork', 3);
+INSERT INTO food VALUES (DEFAULT, 'hamburger', 2);
+INSERT INTO food VALUES (DEFAULT, 'spagetti', 1);
+--delete a food item--
+DELETE FROM food WHERE food_id = 11;
+
+DROP TABLE fridges CASCADE;
+
+---deleting a restaurant-----
+DELETE FROM restaurant WHERE restaurant_id =4;
+---insert a new restaurant----
+INSERT INTO restaurant VALUES (DEFAULT, 'Burger King', 'King', 'password');
+
+----insert a new fridge---------
+INSERT INTO fridges VALUES (DEFAULT, 1);
+--inner join---------
+SELECT * FROM restaurant r
+INNER JOIN fridges f ON r.restaurant_id = f.fridge_id ;
+
+SELECT restaurant_name FROM restaurant r
+INNER JOIN fridges f ON r.restaurant_id = f.restaurant_id_fk;
+
+------Figure which food belongs in what fridge--------------
+
+SELECT fridge_id = 2 FROM fridges f 
+INNER JOIN food d ON f.fridge_id = d.fridge_id_fk;
+
+----------Trying to make another inner join and test some ideas--------------
+SELECT a.user_name, a.\"password\", ra.restaurant_id, ra.restaurant_name " +
+                            "FROM accounts a INNER JOIN restaurant_accounts ra ON a.user_name = ?
+
+
+
+
+
+CREATE TABLE food(
+food_id SERIAL PRIMARY KEY,
+food_item varchar(50) NOT NULL,
+fridge_id_fk int REFERENCES fridges(fridge_id)
+);
+
+DROP TABLE food;
+
+----Many to Many Relationship----
+
+CREATE TABLE health_inspector_fridges_ck (
+	fridge_id_fk int REFERENCES fridge(fridge_id),
+	inspector_id_fk varchar(20) REFERENCES account(username),
+	PRIMARY KEY (fridge_id_fk, inspector_id_fk)
+);
+
+-------Selecting an inspector with inpector_id
+SELECT * FROM health_inspector WHERE inspector_id = 1;
+
+SELECT * FROM fridges WHERE fridge_id = 3;
+
+-------Update food in order to transfer Food from one fridge to another---------
+UPDATE food SET fridge_id_fk = 3 WHERE food_id = 11;
+
+SELECT * FROM food;
+SELECT * FROM fridges;
+SELECT * FROM health_inspector;
+SELECT * FROM restaurant;
+SELECT * FROM health_inspector_fridges_ck;
+
+
+INSERT INTO public.restaurant_owner
+(owner_id, first_name, last_name, st_address, unit, city, state, zip_code)
+VALUES('1001', 'Aaaa', 'GGGG', '1254 St Paul St', '12', 'St Paul', 'MN', '55118');
+
+CREATE TABLE 
+
+--making a many-to-many-relationship-----
+
+SELECT health_inspector_id, username_hi, pass_word_hi FROM user_health_inspector
+WHERE health_inspector_id AND username_hi = 'john002' AND pass_word hi='od1se123';
+
+CREATE TABLE restaurant(
+restaurant_id SERIAL PRIMARY KEY,
+
+);
+
+--create table 
+
+--Create a Many-to-Many Relationship
+
