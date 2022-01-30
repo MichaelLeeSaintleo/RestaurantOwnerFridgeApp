@@ -11,11 +11,11 @@ public class Main {
     public static void main(String[] args) {
 
         // For user input, a Scanner will be used to be instantiated
-        //Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in); 
 
         /*
         Use the display option for the menu views to connect with the user.
-        The MainMenuView.display(); will begin the project.
+        The MainMenuView.display(); will begin the RestaurantOwner project.
         */
         MainMenuView.display();
 
